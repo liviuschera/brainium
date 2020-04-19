@@ -31,11 +31,7 @@ body {
  	 font-size: 1.6rem;
  	 line-height: 2;
  	/* background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); */
-
    box-sizing: border-box;
-   /* width: 100%; */
-	position: absolute;
-	text-align: center;
 }
 
 @keyframes gradientBG {
