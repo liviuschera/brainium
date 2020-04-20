@@ -27,6 +27,6 @@ body {
 	  font-weight: 400;
  	 font-size: 1.6rem;
 	  line-height: 2;
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 `;

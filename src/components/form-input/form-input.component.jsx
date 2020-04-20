@@ -6,7 +6,7 @@ export default function FormInput(label) {
   return (
     <FormInputWrapper>
       <Input />
-      <Label></Label>
+      <Label>Label</Label>
     </FormInputWrapper>
   );
 }
