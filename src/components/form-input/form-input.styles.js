@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 
 const inputColor = 'hsl(188, 50%, 21%)';
 const labelColor = 'hsl(188, 20%, 40%)';
-const paddingSize = '2rem';
+const fontSize = '2rem';
+const paddingSize = '3rem';
 
 const shrinkLabel = css`
   top: 0;
@@ -18,7 +19,7 @@ export const FormInputWrapper = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: ${paddingSize};
+  font-size: ${fontSize};
   font-weight: normal;
   position: absolute;
   pointer-events: none;
@@ -35,7 +36,7 @@ export const Input = styled.input`
   border-bottom: 1px solid ${labelColor};
   background: none;
   background-color: transparent;
-  font-size: ${paddingSize};
+  font-size: ${fontSize};
   color: ${inputColor};
 
   &:focus {
