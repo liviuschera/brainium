@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
 export const RankContainer = styled.div`
-  /* background-color: rgba(0, 0, 0, 0.3); */
-  width: 50%;
-  margin: 0 auto;
   text-align: center;
-  margin-top: 5rem;
+  margin-bottom: 3rem;
 `;
 
 export const RankParag = styled.p`
