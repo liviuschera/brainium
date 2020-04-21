@@ -35,6 +35,8 @@ export const Input = styled.input`
   border-bottom: 1px solid ${labelColor};
   background: none;
   background-color: transparent;
+  font-size: ${paddingSize};
+  color: ${inputColor};
 
   &:focus {
     outline: none;

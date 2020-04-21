@@ -5,6 +5,7 @@ import Particles from 'react-particles-js';
 import { ParticlesWrapper } from './app.styles';
 import Header from './components/header/header.component';
 import ImageLinkForm from './components/image-link-form/image-link-form.component';
+import Rank from './components/rank/rank.component';
 
 function App() {
   const config = {
@@ -36,6 +37,7 @@ function App() {
         <Particles params={config} />
       </ParticlesWrapper>
       <Header />
+      <Rank />
       <ImageLinkForm />
     </>
   );
