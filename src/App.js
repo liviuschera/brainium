@@ -1,36 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { GlobalStyle } from './globals.styles';
 import Particles from 'react-particles-js';
 import { ParticlesWrapper } from './app.styles';
+import { config } from './particles.config';
 import Header from './components/header/header.component';
 import ContentContainer from './components/content-container/content-container.component';
 import ImageLinkForm from './components/image-link-form/image-link-form.component';
 import Rank from './components/rank/rank.component';
 
 function App() {
-  const config = {
-    particles: {
-      number: {
-        value: 55,
-        // density: {
-        //   enable: true,
-        //   value_area: 700,
-        // },
-      },
-      size: {
-        value: 5,
-      },
-    },
-    interactivity: {
-      events: {
-        onhover: {
-          enable: true,
-          mode: 'repulse',
-        },
-      },
-    },
-  };
+  const [inputURL, setInputURL] = useState('');
+
+  function onInputChange(event) {
+    setInputURL(event.target.value);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -40,7 +25,7 @@ function App() {
       <Header />
       <ContentContainer>
         <Rank />
-        <ImageLinkForm />
+        <ImageLinkForm onInputChange={onInputChange} />
       </ContentContainer>
     </>
   );
