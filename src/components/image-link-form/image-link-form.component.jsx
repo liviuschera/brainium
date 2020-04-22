@@ -6,7 +6,7 @@ import { ImageLinkFormWrapper } from './image-link-form.styles';
 export default function ImageLinkForm() {
   return (
     <ImageLinkFormWrapper>
-      <FormInput />
+      <FormInput label="Please enter an image URL" />
     </ImageLinkFormWrapper>
   );
 }

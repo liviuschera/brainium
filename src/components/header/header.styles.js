@@ -4,15 +4,15 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   height: 7rem;
-  padding: 1.3rem;
-
-  /* background-color: hsla(188, 21%, 11%, 0.3); */
+  margin: 2rem 5vw;
 `;
 
 export const NavLink = styled.a`
   color: hsl(188, 90%, 10%);
   cursor: pointer;
   transition: all 300ms linear;
+  align-self: center;
+
   &:hover {
     color: hsl(188, 100%, 90%);
   }

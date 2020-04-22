@@ -22,10 +22,10 @@ html {
 }
 
 body {
-   font-family: "Nova Mono", -apple-system, BlinkMacSystemFont, "Segoe UI",
+   font-family: 'Yanone Kaffeesatz', -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	  font-weight: 400;
- 	 font-size: 1.6rem;
+	  font-weight: 200;
+ 	 font-size: 1.8rem;
 	  line-height: 2;
   box-sizing: border-box;
 }

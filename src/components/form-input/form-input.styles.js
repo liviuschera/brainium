@@ -1,14 +1,15 @@
 import styled, { css } from 'styled-components';
 
 const inputColor = 'hsl(188, 50%, 21%)';
-const labelColor = 'hsl(188, 20%, 40%)';
+const labelColor = 'hsla(200, 42%, 15%, 1)';
+const labelShrinkColor = 'hsla(200, 42%, 33%, 1)';
 const fontSize = '2rem';
 const paddingSize = '3rem';
 
 const shrinkLabel = css`
-  top: 0;
-  font-size: 1.2rem;
-  color: ${inputColor};
+  top: 0.5rem;
+  font-size: 1.4rem;
+  color: ${labelShrinkColor};
 `;
 
 export const FormInputWrapper = styled.div`
@@ -20,11 +21,10 @@ export const FormInputWrapper = styled.div`
 
 export const Label = styled.label`
   font-size: ${fontSize};
-  font-weight: normal;
   position: absolute;
   pointer-events: none;
   left: ${paddingSize};
-  top: 1rem;
+  top: 2.2rem;
   color: ${labelColor};
   transition: 300ms ease all;
 `;
