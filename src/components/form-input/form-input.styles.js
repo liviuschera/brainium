@@ -13,8 +13,11 @@ const shrinkLabel = css`
 `;
 
 export const FormInputWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: space-evenly; */
+  position: relative;
+  width: 100%;
+  /* display: inline-block; */
   padding: ${paddingSize};
   color: ${inputColor};
 `;
@@ -31,7 +34,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   height: 3rem;
-  width: 100%;
+  width: inherit;
   border: none;
   border-bottom: 1px solid ${labelColor};
   background: none;
