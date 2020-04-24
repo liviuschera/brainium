@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import { GlobalStyle } from './globals.styles';
 import Particles from 'react-particles-js';
 import { ParticlesWrapper } from './app.styles';
-import detectFace from '../src/clarifai/clarifai.api';
+import {
+  fetchClarifaiData,
+  calculateFaceLocation,
+} from '../src/clarifai/clarifai.api';
 import DisplayImage from '../src/components/display-image/display-image.component';
 
 import { config } from './particles.config';
@@ -19,9 +22,12 @@ function App() {
     setInputURL(event.target.value);
   }
 
-  function onButtonSubmit(event) {
+  async function onButtonSubmit(event) {
     event.preventDefault();
-    detectFace(inputURL);
+    // console.log(await fetchClarifaiData(inputURL));
+    const data = await fetchClarifaiData(inputURL);
+    const faceLocation = calculateFaceLocation(data);
+    console.log(faceLocation);
   }
 
   return (
