@@ -1,12 +1,12 @@
 import React from 'react';
-import { ImgWrapper } from './display-image.styles';
+import { ImgWrapper, Img } from './display-image.styles';
 
-export default function DisplayImage(url) {
-  console.log(url);
+export default function DisplayImage({ imgUrl }) {
+  console.log(imgUrl);
 
   return (
     <ImgWrapper>
-      <img src={url} alt="A person" />
+      {imgUrl ? <Img src={imgUrl} alt="A person" /> : null}
     </ImgWrapper>
   );
 }

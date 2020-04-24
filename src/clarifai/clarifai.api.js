@@ -7,7 +7,7 @@ const app = new Clarifai.App({
 export default function clarifyAPIPredict(link) {
   app.models
     .predict(
-      'a403429f2ddf4b49b307e318f00e528b',
+      Clarifai.FACE_DETECT_MODEL,
       link
       // 'https://samples.clarifai.com/face-det.jpg'
     )
