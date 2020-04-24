@@ -6,7 +6,7 @@ export default function DisplayImage({ imgUrl }) {
 
   return (
     <ImgWrapper>
-      {imgUrl ? <Img src={imgUrl} alt="A person" /> : null}
+      {imgUrl ? <Img id="inputImage" src={imgUrl} alt="A person" /> : null}
     </ImgWrapper>
   );
 }

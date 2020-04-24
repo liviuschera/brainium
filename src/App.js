@@ -22,7 +22,6 @@ function App() {
   function onButtonSubmit(event) {
     event.preventDefault();
     detectFace(inputURL);
-    // console.log('clicked!');
   }
 
   return (

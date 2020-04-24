@@ -34,13 +34,15 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-weight: 200;
   height: 3rem;
   width: inherit;
   border: none;
   border-bottom: 1px solid ${labelColor};
   background: none;
   background-color: transparent;
-  font-size: ${fontSize};
+  font-size: 1.8rem;
   color: ${inputColor};
 
   &:focus {
