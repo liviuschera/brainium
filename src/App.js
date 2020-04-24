@@ -35,6 +35,7 @@ function App() {
       <ContentContainer>
         <Rank />
         <ImageLinkForm
+          inputValue={inputURL}
           onInputChange={onInputChange}
           onButtonSubmit={onButtonSubmit}
         />

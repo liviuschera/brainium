@@ -30,6 +30,8 @@ export const Label = styled.label`
   top: 2.2rem;
   color: ${labelColor};
   transition: 300ms ease all;
+  ${(props) => console.log(props)};
+  ${(props) => (props.shrink ? shrinkLabel : null)};
 `;
 
 export const Input = styled.input`

@@ -2,11 +2,11 @@ import React from 'react';
 
 import { FormInputWrapper, Input, Label } from './form-input.styles';
 
-export default function FormInput({ label, onInputChange }) {
+export default function FormInput({ value, label, onInputChange }) {
   return (
     <FormInputWrapper>
-      <Input onChange={onInputChange} />
-      <Label>{label}</Label>
+      <Input onChange={onInputChange} value={value} />
+      {label ? <Label shrink={value}>{label}</Label> : null}
     </FormInputWrapper>
   );
 }
