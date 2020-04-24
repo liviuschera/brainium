@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { GlobalStyle } from './globals.styles';
 import Particles from 'react-particles-js';
 import { ParticlesWrapper } from './app.styles';
+import detectFace from '../src/clarifai/clarifai.api';
+import DisplayImage from '../src/components/display-image/display-image.component';
+
 import { config } from './particles.config';
 import Header from './components/header/header.component';
 import ContentContainer from './components/content-container/content-container.component';
@@ -16,6 +19,12 @@ function App() {
     setInputURL(event.target.value);
   }
 
+  function onButtonSubmit(event) {
+    event.preventDefault();
+    detectFace(inputURL);
+    // console.log('clicked!');
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -25,7 +34,11 @@ function App() {
       <Header />
       <ContentContainer>
         <Rank />
-        <ImageLinkForm onInputChange={onInputChange} />
+        <ImageLinkForm
+          onInputChange={onInputChange}
+          onButtonSubmit={onButtonSubmit}
+        />
+        <DisplayImage imgUrl={inputURL} />
       </ContentContainer>
     </>
   );
