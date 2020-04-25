@@ -16,19 +16,31 @@ export async function fetchClarifaiData(link) {
 export function calculateFaceLocation(data) {
   try {
     if (Object.keys(data.outputs[0].data).length > 0) {
-      const clarifaiBoundingBox =
-        data.outputs[0].data.regions[0].region_info.bounding_box;
       const image = document.getElementById('inputImage');
       const width = Number(image.width);
       const height = Number(image.height);
-      console.log(width, height);
+      const clarifaiBoundingRegions = data.outputs[0].data.regions.map(
+        (region) => {
+          const regionData = region.region_info.bounding_box;
+          return {
+            leftCol: regionData.left_col * width,
+            topRow: regionData.top_row * height,
+            rightCol: width - regionData.right_col * width,
+            bottomRow: height - regionData.bottom_row * height,
+          };
+        }
+      );
+      // console.log(clarifaiBoundingRegions);
 
-      return {
-        leftCol: clarifaiBoundingBox.left_col * width,
-        topRow: clarifaiBoundingBox.top_row * height,
-        rightCol: width - clarifaiBoundingBox.right_col * width,
-        bottomRow: height - clarifaiBoundingBox.bottom_row * height,
-      };
+      // const clarifaiBoundingBox =
+      //   data.outputs[0].data.regions[0].region_info.bounding_box;
+      return clarifaiBoundingRegions;
+      // return {
+      //   leftCol: clarifaiBoundingBox.left_col * width,
+      //   topRow: clarifaiBoundingBox.top_row * height,
+      //   rightCol: width - clarifaiBoundingBox.right_col * width,
+      //   bottomRow: height - clarifaiBoundingBox.bottom_row * height,
+      // };
     } else {
       throw new Error("Can't detect any face in this image.");
     }

@@ -4,7 +4,7 @@ import { BoundingBoxDiv } from './bounding-box.styles';
 
 // Displays a rectangle around a face
 export default function BoundingBox({ coords }) {
-  console.log(coords);
+  // console.log(coords);
 
   return coords ? (
     <BoundingBoxDiv

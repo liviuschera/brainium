@@ -32,9 +32,12 @@ export default function App() {
   async function onButtonSubmit(event) {
     event.preventDefault();
     const data = await fetchClarifaiData(inputURL);
+    // console.log(data);
+
     const faceLocation = calculateFaceLocation(data);
     setBoundingBoxCoords(faceLocation);
   }
+  // console.log(boundingBoxCoords);
 
   return (
     <>
@@ -50,7 +53,7 @@ export default function App() {
           onInputChange={onInputChange}
           onButtonSubmit={onButtonSubmit}
         />
-        <DisplayImage imgUrl={inputURL} coords={boundingBoxCoords} />
+        <DisplayImage imgUrl={inputURL} coordsArray={boundingBoxCoords} />
       </ContentContainer>
     </>
   );
