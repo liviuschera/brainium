@@ -1,3 +1,6 @@
+// ///////////////////////////
+// IMPORTS
+
 import React, { useState } from 'react';
 
 import { GlobalStyle } from './globals.styles';
@@ -15,8 +18,12 @@ import ContentContainer from './components/content-container/content-container.c
 import ImageLinkForm from './components/image-link-form/image-link-form.component';
 import Rank from './components/rank/rank.component';
 
-function App() {
+// ///////////////////////////
+// APP
+
+export default function App() {
   const [inputURL, setInputURL] = useState('');
+  const [boundingBoxCoords, setBoundingBoxCoords] = useState({});
 
   function onInputChange(event) {
     setInputURL(event.target.value);
@@ -24,10 +31,9 @@ function App() {
 
   async function onButtonSubmit(event) {
     event.preventDefault();
-    // console.log(await fetchClarifaiData(inputURL));
     const data = await fetchClarifaiData(inputURL);
     const faceLocation = calculateFaceLocation(data);
-    console.log(faceLocation);
+    setBoundingBoxCoords(faceLocation);
   }
 
   return (
@@ -44,10 +50,8 @@ function App() {
           onInputChange={onInputChange}
           onButtonSubmit={onButtonSubmit}
         />
-        <DisplayImage imgUrl={inputURL} />
+        <DisplayImage imgUrl={inputURL} coords={boundingBoxCoords} />
       </ContentContainer>
     </>
   );
 }
-
-export default App;

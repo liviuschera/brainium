@@ -20,6 +20,7 @@ export function calculateFaceLocation(data) {
     const image = document.getElementById('inputImage');
     const width = Number(image.width);
     const height = Number(image.height);
+    console.log(width, height);
 
     return {
       leftCol: clarifaiBoundingBox.left_col * width,
