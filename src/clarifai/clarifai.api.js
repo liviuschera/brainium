@@ -15,20 +15,25 @@ export async function fetchClarifaiData(link) {
 
 export function calculateFaceLocation(data) {
   try {
-    const clarifaiBoundingBox =
-      data.outputs[0].data.regions[0].region_info.bounding_box;
-    const image = document.getElementById('inputImage');
-    const width = Number(image.width);
-    const height = Number(image.height);
-    console.log(width, height);
+    if (Object.keys(data.outputs[0].data).length > 0) {
+      const clarifaiBoundingBox =
+        data.outputs[0].data.regions[0].region_info.bounding_box;
+      const image = document.getElementById('inputImage');
+      const width = Number(image.width);
+      const height = Number(image.height);
+      console.log(width, height);
 
-    return {
-      leftCol: clarifaiBoundingBox.left_col * width,
-      topRow: clarifaiBoundingBox.top_row * height,
-      rightCol: width - clarifaiBoundingBox.right_col * width,
-      bottomRow: height - clarifaiBoundingBox.bottom_row * height,
-    };
+      return {
+        leftCol: clarifaiBoundingBox.left_col * width,
+        topRow: clarifaiBoundingBox.top_row * height,
+        rightCol: width - clarifaiBoundingBox.right_col * width,
+        bottomRow: height - clarifaiBoundingBox.bottom_row * height,
+      };
+    } else {
+      throw new Error("Can't detect any face in this image.");
+    }
   } catch (error) {
-    console.error('Invalid API data: ', error);
+    console.error(error);
+    return {};
   }
 }

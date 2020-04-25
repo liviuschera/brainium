@@ -2,8 +2,11 @@ import React from 'react';
 
 import { BoundingBoxDiv } from './bounding-box.styles';
 
+// Displays a rectangle around a face
 export default function BoundingBox({ coords }) {
-  return (
+  console.log(coords);
+
+  return coords ? (
     <BoundingBoxDiv
       style={{
         top: coords.topRow,
@@ -12,5 +15,5 @@ export default function BoundingBox({ coords }) {
         left: coords.leftCol,
       }}
     />
-  );
+  ) : null;
 }
