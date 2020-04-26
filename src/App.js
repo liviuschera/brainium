@@ -23,7 +23,7 @@ import Rank from './components/rank/rank.component';
 
 export default function App() {
   const [inputURL, setInputURL] = useState('');
-  const [boundingBoxCoords, setBoundingBoxCoords] = useState({});
+  const [boundingBoxCoords, setBoundingBoxCoords] = useState([]);
 
   function onInputChange(event) {
     setInputURL(event.target.value);
@@ -32,7 +32,6 @@ export default function App() {
   async function onButtonSubmit(event) {
     event.preventDefault();
     const data = await fetchClarifaiData(inputURL);
-    // console.log(data);
 
     const faceLocation = calculateFaceLocation(data);
     setBoundingBoxCoords(faceLocation);

@@ -30,22 +30,12 @@ export function calculateFaceLocation(data) {
           };
         }
       );
-      // console.log(clarifaiBoundingRegions);
-
-      // const clarifaiBoundingBox =
-      //   data.outputs[0].data.regions[0].region_info.bounding_box;
       return clarifaiBoundingRegions;
-      // return {
-      //   leftCol: clarifaiBoundingBox.left_col * width,
-      //   topRow: clarifaiBoundingBox.top_row * height,
-      //   rightCol: width - clarifaiBoundingBox.right_col * width,
-      //   bottomRow: height - clarifaiBoundingBox.bottom_row * height,
-      // };
     } else {
       throw new Error("Can't detect any face in this image.");
     }
   } catch (error) {
     console.error(error);
-    return {};
+    return [];
   }
 }
