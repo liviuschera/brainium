@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  font-family: 'Yanone Kaffeesatz', sans-serif;
+  /* font-family: 'Yanone Kaffeesatz', sans-serif; */
   max-width: 15rem;
   min-width: max-content;
   height: 4rem;
   letter-spacing: 0.2rem;
   line-height: 4rem;
   padding: 0 1rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
+  font-weight: 300;
   background-color: transparent;
   border: none;
   cursor: pointer;

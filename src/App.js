@@ -13,7 +13,7 @@ import { config } from './particles.config';
 
 import Header from './components/header/header.component';
 import Homepage from './pages/homepage/homepage.component';
-import SignIn from './pages/sign-in/sign-in.component';
+import SignIn from './components/sign-in/sign-in.component';
 
 // ///////////////////////////
 // APP

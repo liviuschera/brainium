@@ -8,8 +8,9 @@ export const RankContainer = styled.div`
 
 export const RankParag = styled.p`
   font-size: 2.5rem;
+  font-weight: 100;
 `;
 export const RankHeader = styled.h1`
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 500;
 `;

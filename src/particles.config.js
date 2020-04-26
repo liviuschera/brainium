@@ -1,11 +1,11 @@
 export const config = {
   particles: {
     number: {
-      value: 55,
-      // density: {
-      //   enable: true,
-      //   value_area: 700,
-      // },
+      value: 30,
+      density: {
+        enable: true,
+        value_area: 300,
+      },
     },
     size: {
       value: 5,
