@@ -20,9 +20,11 @@ import { HomepageDiv } from './homepage.styles';
 // HOMEPAGE
 // ///////////////////////////
 
-export default function HomePage(params) {
+export default function HomePage(props) {
   const [inputURL, setInputURL] = useState('');
   const [boundingBoxCoords, setBoundingBoxCoords] = useState([]);
+
+  console.log(props);
 
   function onInputChange(event) {
     setInputURL(event.target.value);
@@ -39,7 +41,6 @@ export default function HomePage(params) {
 
   return (
     <>
-      <Header />
       <ContentContainer>
         <Rank />
         <ImageLinkForm
