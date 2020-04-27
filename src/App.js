@@ -14,6 +14,7 @@ import { config } from './particles.config';
 import Header from './components/header/header.component';
 import Homepage from './pages/homepage/homepage.component';
 import SignIn from './components/sign-in/sign-in.component';
+import SignUp from './components/sign-up/sign-up.component';
 
 // ///////////////////////////
 // APP
@@ -30,6 +31,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignIn} />
       </Switch>
     </>
   );

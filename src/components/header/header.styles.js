@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
@@ -7,8 +9,7 @@ export const HeaderContainer = styled.header`
   margin: 2rem 7vw;
 `;
 
-export const NavLink = styled.a`
-  color: hsl(188, 90%, 10%);
+export const NavLink = styled(Link)`
   font-size: 1.8rem;
   font-weight: 300;
   cursor: pointer;

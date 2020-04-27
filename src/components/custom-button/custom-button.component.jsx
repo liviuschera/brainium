@@ -1,7 +1,15 @@
 import React from 'react';
 
-import { Button } from './custom-button.styles';
+import { NormalButton, LinkButton } from './custom-button.styles';
 
-export default function CustomButton({ children, ...otherProps }) {
-  return <Button {...otherProps}>{children}</Button>;
+export default function CustomButton({
+  isLink = false,
+  children,
+  ...otherProps
+}) {
+  return isLink ? (
+    <LinkButton {...otherProps}>{children}</LinkButton>
+  ) : (
+    <NormalButton {...otherProps}>{children}</NormalButton>
+  );
 }

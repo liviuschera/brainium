@@ -9,12 +9,11 @@ import {
 } from '../../clarifai/clarifai.api';
 import DisplayImage from '../../components/display-image/display-image.component';
 
-import Header from '../../components/header/header.component';
 import ContentContainer from '../../components/content-container/content-container.component';
 import ImageLinkForm from '../../components/image-link-form/image-link-form.component';
 import Rank from '../../components/rank/rank.component';
 
-import { HomepageDiv } from './homepage.styles';
+// import { HomepageDiv } from './homepage.styles';
 
 // ///////////////////////////
 // HOMEPAGE

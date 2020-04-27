@@ -8,8 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   padding: 0;
   box-sizing: inherit;
   text-decoration: none;
-  /* color: hsl(0, 11%, 22%); */
-
+color: hsl(188, 90%, 10%);
 }
 
 html {
@@ -19,6 +18,7 @@ html {
 
 	background: linear-gradient(90deg,  #65C7F7 ,#23a6d5  );
 	background-size: 100vw 100vh;
+  /* color: hsl(188, 90%, 10%); */
 }
 
 body {
