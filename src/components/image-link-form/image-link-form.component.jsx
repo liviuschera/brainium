@@ -12,9 +12,12 @@ export default function ImageLinkForm({
   return (
     <ImageLinkFormWrapper action="post">
       <FormInput
+        name="inputURL"
+        type="text"
         value={inputValue}
         label="Please enter an image URL"
-        onInputChange={onInputChange}
+        onChange={onInputChange}
+        required
       />
       <CustomButton type="submit" onClick={onButtonSubmit}>
         Detect

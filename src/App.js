@@ -31,7 +31,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
       </Switch>
     </>
   );

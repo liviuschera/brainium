@@ -4,10 +4,10 @@ const inputColor = 'hsl(188, 50%, 21%)';
 const labelColor = 'hsla(200, 42%, 15%, 1)';
 const labelShrinkColor = 'hsla(200, 42%, 33%, 1)';
 const fontSize = '1.8rem';
-const paddingSize = '3rem';
+const paddingSize = '2rem';
 
 const shrinkLabel = css`
-  top: 1rem;
+  top: 0.7rem;
   font-size: 1.3rem;
   color: ${labelShrinkColor};
 `;
@@ -17,6 +17,9 @@ export const FormInputWrapper = styled.div`
   width: 100%;
   padding: ${paddingSize};
   color: ${inputColor};
+  &:last-child {
+    background-color: red;
+  }
 `;
 
 export const Label = styled.label`
@@ -25,7 +28,7 @@ export const Label = styled.label`
   position: absolute;
   pointer-events: none;
   left: ${paddingSize};
-  top: 2.5rem;
+  top: 2.3rem;
   color: ${labelColor};
   transition: 300ms ease all;
   ${(props) => (props.shrink ? shrinkLabel : null)};

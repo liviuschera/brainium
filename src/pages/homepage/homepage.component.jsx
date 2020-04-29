@@ -23,9 +23,11 @@ export default function HomePage(props) {
   const [inputURL, setInputURL] = useState('');
   const [boundingBoxCoords, setBoundingBoxCoords] = useState([]);
 
-  console.log(props);
+  // console.log(props);
 
   function onInputChange(event) {
+    console.log(event.target.value);
+
     setInputURL(event.target.value);
   }
 
