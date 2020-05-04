@@ -8,7 +8,7 @@ export const config = {
       },
     },
     size: {
-      value: 5,
+      value: 3,
     },
   },
   interactivity: {

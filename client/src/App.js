@@ -2,7 +2,7 @@
 // IMPORTS
 // ///////////////////////////
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -21,6 +21,7 @@ import SignUp from './components/sign-up/sign-up.component';
 // ///////////////////////////
 
 export default function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
   return (
     <>
       <GlobalStyle />
