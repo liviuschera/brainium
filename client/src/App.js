@@ -4,7 +4,9 @@
 
 import React, { useState } from 'react';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+
+import CurrentUserContext from '../src/contexts/current-user.context';
 
 import { GlobalStyle } from './globals.styles';
 import { ParticlesWrapper } from './app.styles';
@@ -21,19 +23,28 @@ import SignUp from './components/sign-up/sign-up.component';
 // ///////////////////////////
 
 export default function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(false);
+  const value = { currentUser, setCurrentUser };
+
   return (
     <>
       <GlobalStyle />
       <ParticlesWrapper>
         <Particles params={config} />
       </ParticlesWrapper>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignUp} />
-      </Switch>
+      <CurrentUserContext.Provider value={value}>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route
+            exact
+            path="/signin"
+            render={() => (currentUser ? <Redirect to="/" /> : <SignIn />)}
+          />
+          {/* <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} /> */}
+        </Switch>
+      </CurrentUserContext.Provider>
     </>
   );
 }

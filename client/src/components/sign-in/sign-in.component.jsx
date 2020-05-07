@@ -1,22 +1,36 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+// import { useLocation, useHistory } from 'react-router-dom';
 
 import { SignInContainer, Title } from './sign-in.styles';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
+import { postData } from '../../utils/connect-to-api';
+import CurrentUserContext from '../../contexts/current-user.context';
 
 export default function SignIn() {
-  const [state, setState] = useState({ email: '', password: '' });
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
-  function handleSubmit(event) {
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+  });
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log('clicked');
+    const response = await postData('http://localhost:5000/signin', state);
+    if (response === 'success') {
+      setCurrentUser(true);
+    }
   }
 
   function handleInputChange(event) {
     const { name, value } = event.target;
 
     setState((prevState) => {
-      const newState = { ...prevState, ...{ [name]: value } };
+      const newState = {
+        ...prevState,
+        ...{ [name]: value },
+      };
       return newState;
     });
   }

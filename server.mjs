@@ -1,8 +1,11 @@
 import express from 'express';
+import bcrypt from 'bcrypt-nodejs';
+import cors from 'cors';
 
 const app = express();
 const port = 5000;
 
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -28,12 +31,14 @@ const database = {
 };
 
 app.get('/', (req, res) => {
-  res.send('Homepage');
+  res.send(database.users);
 });
 
 app.post('/signin', (req, res) => {
   const { email, password } = req.body;
-  //   console.log(email, password);
+  // console.log(req.body);
+
+  // console.log(email, password);
 
   if (email && password) {
     const canLogin = database.users.find((user) => {
@@ -42,15 +47,19 @@ app.post('/signin', (req, res) => {
     //  console.log(canLogin);
 
     if (canLogin) {
-      res.json('login succesfull');
+      res.json('success');
     } else {
-      res.status(400).json('Error logging in');
+      res.status(400).json('fail');
     }
   }
 });
 
-app.post('/register', (req, res) => {
+app.post('/signup', (req, res) => {
   //   console.log({ ...req.body, ...{ createdAt: new Date() } });
+  bcrypt.hash(req.body.password, null, null, function (err, hash) {
+    // Store hash in your password DB.
+    console.log(hash);
+  });
 
   database.users.push({ ...req.body, ...{ createdAt: new Date() } });
   res.json(database.users);
@@ -59,12 +68,26 @@ app.post('/register', (req, res) => {
 app.get('/profile/:id', (req, res) => {
   const userExists = database.users.find((user) => user.id === +req.params.id);
   if (userExists) {
-    // res.json(`req.params: <code>${userExists}</code>`);
     res.json(userExists);
   } else {
     res.status(404).json("User doesn't exists");
   }
   console.log(userExists);
+});
+
+app.put('/image', (req, res) => {
+  console.log(req.body);
+
+  const userExists = database.users.find((user) => {
+    user.entries++;
+    return user.id === req.body.id;
+  });
+  console.log(userExists);
+  if (userExists) {
+    res.json(userExists);
+  } else {
+    res.status(404).json("User doesn't exists");
+  }
 });
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
