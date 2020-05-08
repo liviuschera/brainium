@@ -1,6 +1,6 @@
-export async function postData(url = '', data = {}) {
+export async function postData(url = '', data = {}, method = 'POST') {
   const fetchOptions = {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    method, // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json',
       // 'Content-Type': 'application/x-www-form-urlencoded',

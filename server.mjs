@@ -12,7 +12,7 @@ app.use(express.json());
 const database = {
   users: [
     {
-      id: 123,
+      id: 111,
       name: 'John Smith',
       email: 'smith@email.com',
       password: 'cheers',
@@ -20,10 +20,18 @@ const database = {
       createdAt: new Date(),
     },
     {
-      id: 456,
+      id: 112,
       name: 'Marcy Goldburn',
       email: 'goldburn@email.com',
       password: 'amazing',
+      entries: 0,
+      createdAt: new Date(),
+    },
+    {
+      id: 113,
+      name: 'Wayne',
+      email: 'w@e.com',
+      password: 'p',
       entries: 0,
       createdAt: new Date(),
     },
@@ -41,13 +49,13 @@ app.post('/signin', (req, res) => {
   // console.log(email, password);
 
   if (email && password) {
-    const canLogin = database.users.find((user) => {
+    const userExists = database.users.find((user) => {
       return user.email === email && user.password === password;
     });
-    //  console.log(canLogin);
+    console.log(userExists);
 
-    if (canLogin) {
-      res.json('success');
+    if (userExists) {
+      res.json(userExists);
     } else {
       res.status(400).json('fail');
     }
@@ -61,7 +69,11 @@ app.post('/signup', (req, res) => {
     console.log(hash);
   });
 
-  database.users.push({ ...req.body, ...{ createdAt: new Date() } });
+  database.users.push({
+    ...req.body,
+    ...{ entries: 0 },
+    ...{ createdAt: new Date() },
+  });
   res.json(database.users);
 });
 

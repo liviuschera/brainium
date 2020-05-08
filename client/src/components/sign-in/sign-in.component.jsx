@@ -17,9 +17,11 @@ export default function SignIn() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await postData('http://localhost:5000/signin', state);
-    if (response === 'success') {
-      setCurrentUser(true);
+    const getUser = await postData('http://localhost:5000/signin', state);
+    console.log(getUser.id);
+
+    if (getUser.id) {
+      setCurrentUser(getUser);
     }
   }
 

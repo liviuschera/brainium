@@ -9,11 +9,11 @@ export default function Header(props) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const location = useLocation();
   const history = useHistory();
-  console.log(location);
-  console.log(history);
+  // console.log(location);
+  // console.log(history);
   console.log(currentUser);
-  console.log(setCurrentUser);
-  console.log(props);
+  // console.log(setCurrentUser);
+  // console.log(props);
 
   return (
     <HeaderContainer>
@@ -22,8 +22,8 @@ export default function Header(props) {
           <Logo />
         </LogoContainer>
       </NavLink>
-      {currentUser ? (
-        <NavLink to="/" onClick={() => setCurrentUser(false)}>
+      {currentUser?.id ? (
+        <NavLink to="/" onClick={() => setCurrentUser(null)}>
           Sign Out
         </NavLink>
       ) : (

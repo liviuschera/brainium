@@ -23,7 +23,7 @@ import SignUp from './components/sign-up/sign-up.component';
 // ///////////////////////////
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
 
   return (
@@ -41,8 +41,7 @@ export default function App() {
             path="/signin"
             render={() => (currentUser ? <Redirect to="/" /> : <SignIn />)}
           />
-          {/* <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignUp} /> */}
+          <Route exact path="/signup" component={SignUp} />
         </Switch>
       </CurrentUserContext.Provider>
     </>

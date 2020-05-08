@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-// import { SignUp } from './sign-up.styles';
 import { SignInContainer, Title } from '../sign-in/sign-in.styles';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
+import { postData } from '../../utils/connect-to-api';
 
 export default function SignUp() {
   const [state, setState] = useState({
@@ -13,9 +13,10 @@ export default function SignUp() {
     confirmPassword: '',
   });
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
+    const response = await postData('http://localhost:5000/signup', state);
+    console.log(response);
   }
 
   function handleInputChange(event) {
