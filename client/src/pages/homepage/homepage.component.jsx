@@ -38,7 +38,7 @@ export default function HomePage(props) {
     const faceLocation = calculateFaceLocation(data);
     setBoundingBoxCoords(faceLocation);
 
-    if (currentUser.id) {
+    if (currentUser?.id) {
       const updatedUser = await postData(
         'http://localhost:5000/image',
         { ...currentUser },
