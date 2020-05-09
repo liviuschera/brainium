@@ -1,6 +1,19 @@
 import express from 'express';
 import bcrypt from 'bcrypt-nodejs';
 import cors from 'cors';
+import knex from 'knex';
+
+const db = knex({
+  client: 'pg',
+  connection: {
+    host: '127.0.0.1',
+    user: '',
+    password: '',
+    database: 'brainium',
+  },
+});
+
+console.log(db.select('*').from('users'));
 
 const app = express();
 const port = 5000;

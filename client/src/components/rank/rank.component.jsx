@@ -3,12 +3,12 @@ import CurrentUserContext from '../../contexts/current-user.context';
 import { RankContainer, RankParag, RankHeader } from './rank.styles';
 
 export default function Rank() {
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   console.log(currentUser);
 
   return (
     <RankContainer>
-      <RankParag>User, your current rank is:</RankParag>
+      <RankParag>{currentUser?.name}, your current entry count is:</RankParag>
       <RankHeader>#{currentUser?.entries ?? 0}</RankHeader>
     </RankContainer>
   );
