@@ -7,7 +7,8 @@ import { postData } from '../../utils/connect-to-api';
 
 export default function SignUp() {
   const [state, setState] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -15,8 +16,12 @@ export default function SignUp() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await postData('http://localhost:5000/signup', state);
-    console.log(response);
+    try {
+      const response = await postData('http://localhost:5000/signup', state);
+      console.log(response);
+    } catch (error) {
+      console.error('Sign-up!!!!!:', error);
+    }
   }
 
   function handleInputChange(event) {
@@ -33,10 +38,18 @@ export default function SignUp() {
       <Title>Sign up with your email and password</Title>
       <form method="post" onSubmit={handleSubmit}>
         <FormInput
-          name="name"
+          name="firstName"
           type="text"
-          label="Name"
-          value={state.name}
+          label="First Name"
+          value={state.firstName}
+          onChange={handleInputChange}
+          required
+        />
+        <FormInput
+          name="lastName"
+          type="text"
+          label="Last Name"
+          value={state.lastName}
           onChange={handleInputChange}
           required
         />

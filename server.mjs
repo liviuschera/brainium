@@ -1,19 +1,10 @@
 import express from 'express';
 import bcrypt from 'bcrypt-nodejs';
 import cors from 'cors';
-import knex from 'knex';
+import { getAllUsers, insertUser } from './database/query.database.mjs';
 
-const db = knex({
-  client: 'pg',
-  connection: {
-    host: '127.0.0.1',
-    user: '',
-    password: '',
-    database: 'brainium',
-  },
-});
-
-console.log(db.select('*').from('users'));
+// getAllUsers();
+// console.log(getAllUsers());
 
 const app = express();
 const port = 5000;
@@ -75,19 +66,23 @@ app.post('/signin', (req, res) => {
   }
 });
 
-app.post('/signup', (req, res) => {
-  //   console.log({ ...req.body, ...{ createdAt: new Date() } });
-  bcrypt.hash(req.body.password, null, null, function (err, hash) {
-    // Store hash in your password DB.
-    console.log(hash);
-  });
+app.post('/signup', async (req, res) => {
+  const { firstName, lastName, email } = req.body;
 
-  database.users.push({
-    ...req.body,
-    ...{ entries: 0 },
-    ...{ createdAt: new Date() },
-  });
-  res.json(database.users);
+  try {
+    const userExists = await insertUser({
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      joined: new Date(),
+    });
+
+    if (!userExists) throw Error();
+
+    res.json(userExists);
+  } catch (error) {
+    res.status(400).json('Signup error');
+  }
 });
 
 app.get('/profile/:id', (req, res) => {
