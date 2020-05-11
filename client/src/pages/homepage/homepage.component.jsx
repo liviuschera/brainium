@@ -21,7 +21,7 @@ import { postData } from '../../utils/connect-to-api';
 // HOMEPAGE
 // ///////////////////////////
 
-export default function HomePage(props) {
+export default function HomePage() {
   const [inputURL, setInputURL] = useState('');
   const [boundingBoxCoords, setBoundingBoxCoords] = useState([]);
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);

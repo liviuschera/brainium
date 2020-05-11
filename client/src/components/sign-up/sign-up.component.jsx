@@ -5,7 +5,9 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import { postData } from '../../utils/connect-to-api';
 
-export default function SignUp() {
+export default function SignUp(props) {
+  console.log(props);
+
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -18,9 +20,10 @@ export default function SignUp() {
     event.preventDefault();
     try {
       const response = await postData('http://localhost:5000/signup', state);
-      console.log(response);
+      props.history.push('/');
+      // console.log(response);
     } catch (error) {
-      console.error('Sign-up!!!!!:', error);
+      console.error('Sign-up client error: ', error);
     }
   }
 

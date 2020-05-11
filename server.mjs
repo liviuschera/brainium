@@ -1,7 +1,11 @@
 import express from 'express';
 import bcrypt from 'bcrypt-nodejs';
 import cors from 'cors';
-import { getAllUsers, insertUser } from './database/query.database.mjs';
+import {
+  getAllUsers,
+  insertUser,
+  getUserById,
+} from './database/query.database.mjs';
 
 // getAllUsers();
 // console.log(getAllUsers());
@@ -46,11 +50,11 @@ app.get('/', (req, res) => {
   res.send(database.users);
 });
 
-app.post('/signin', (req, res) => {
+app.post('/signin', async (req, res) => {
   const { email, password } = req.body;
-  // console.log(req.body);
+  console.log(email, password);
 
-  // console.log(email, password);
+  // console.log(await getAllUsers());
 
   if (email && password) {
     const userExists = database.users.find((user) => {
@@ -69,30 +73,28 @@ app.post('/signin', (req, res) => {
 app.post('/signup', async (req, res) => {
   const { firstName, lastName, email } = req.body;
 
-  try {
-    const userExists = await insertUser({
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      joined: new Date(),
-    });
+  const userExists = await insertUser({
+    first_name: firstName,
+    last_name: lastName,
+    email,
+    joined: new Date(),
+  });
 
-    if (!userExists) throw Error();
-
+  if (userExists) {
     res.json(userExists);
-  } catch (error) {
+  } else {
     res.status(400).json('Signup error');
   }
 });
 
-app.get('/profile/:id', (req, res) => {
-  const userExists = database.users.find((user) => user.id === +req.params.id);
-  if (userExists) {
+app.get('/user/:id', async (req, res) => {
+  const userExists = await getUserById(req.params.id);
+
+  if (userExists.length > 0) {
     res.json(userExists);
   } else {
     res.status(404).json("User doesn't exists");
   }
-  console.log(userExists);
 });
 
 app.put('/image', (req, res) => {

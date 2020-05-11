@@ -8,7 +8,9 @@ export default function Rank() {
 
   return (
     <RankContainer>
-      <RankParag>{currentUser?.name}, your current entry count is:</RankParag>
+      <RankParag>
+        {currentUser?.name ?? 'User'}, your current entry count is:
+      </RankParag>
       <RankHeader>#{currentUser?.entries ?? 0}</RankHeader>
     </RankContainer>
   );
