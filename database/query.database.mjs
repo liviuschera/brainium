@@ -31,3 +31,15 @@ export async function getUserByEmail(email) {
     console.error(`Unable to retrieve user with email: ${email}`, error);
   }
 }
+
+export async function updateUserEntries(id) {
+  try {
+    return await db('users')
+      .where('id', '=', id)
+      .increment('entries', 1)
+      .returning('entries');
+  } catch (error) {
+    console.error('updateUserEntries: Unable to update entry.', error.message);
+    return new Error(error);
+  }
+}

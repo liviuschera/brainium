@@ -21,7 +21,7 @@ export default function SignUp(props) {
     try {
       const response = await postData('http://localhost:5000/signup', state);
       props.history.push('/');
-      // console.log(response);
+      console.log(response);
     } catch (error) {
       console.error('Sign-up client error: ', error);
     }

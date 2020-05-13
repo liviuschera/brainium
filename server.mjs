@@ -5,7 +5,9 @@ import {
   getAllUsers,
   insertUser,
   getUserById,
+  updateUserEntries,
 } from './database/query.database.mjs';
+import { getUserByEmail } from './database/query.database.mjs';
 
 // getAllUsers();
 // console.log(getAllUsers());
@@ -56,14 +58,17 @@ app.post('/signin', async (req, res) => {
 
   // console.log(await getAllUsers());
 
-  if (email && password) {
-    const userExists = database.users.find((user) => {
-      return user.email === email && user.password === password;
-    });
-    console.log(userExists);
+  // console.log(await getUserByEmail(email));
 
-    if (userExists) {
-      res.json(userExists);
+  if (email && password) {
+    const userExists = await getUserByEmail(email);
+    // const userExists = database.users.find((user) => {
+    //   return user.email === email && user.password === password;
+    // });
+    console.log('userexists:', userExists[0]?.id);
+
+    if (userExists.length > 0) {
+      res.json(userExists[0]);
     } else {
       res.status(400).json('fail');
     }
@@ -97,18 +102,21 @@ app.get('/user/:id', async (req, res) => {
   }
 });
 
-app.put('/image', (req, res) => {
-  console.log(req.body);
+app.put('/image', async (req, res) => {
+  console.log('req.body /image', req.body.id);
+  const { id } = req.body;
+  const userExists = await getUserById(id);
 
-  const userExists = database.users.find((user) => {
-    user.entries++;
-    return user.id === req.body.id;
-  });
-  console.log(userExists);
-  if (userExists) {
-    res.json(userExists);
+  if (userExists.length > 0) {
+    const updateEntry = await updateUserEntries(id);
+
+    if (updateEntry instanceof Error) {
+      res.status(404).json('Unable to update user entries (db query failed)');
+    } else {
+      res.json(updateEntry[0]);
+    }
   } else {
-    res.status(404).json("User doesn't exists");
+    res.status(404).json('Unable to update user entries (no such user)');
   }
 });
 

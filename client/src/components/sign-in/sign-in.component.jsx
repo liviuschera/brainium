@@ -8,7 +8,7 @@ import { postData } from '../../utils/connect-to-api';
 import CurrentUserContext from '../../contexts/current-user.context';
 
 export default function SignIn() {
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser } = useContext(CurrentUserContext);
 
   const [state, setState] = useState({
     email: '',
@@ -18,7 +18,7 @@ export default function SignIn() {
   async function handleSubmit(event) {
     event.preventDefault();
     const getUser = await postData('http://localhost:5000/signin', state);
-    console.log(getUser.id);
+    console.log('getUser?.id', getUser);
 
     if (getUser?.id) {
       setCurrentUser(getUser);

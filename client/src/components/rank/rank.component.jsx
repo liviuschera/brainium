@@ -4,12 +4,12 @@ import { RankContainer, RankParag, RankHeader } from './rank.styles';
 
 export default function Rank() {
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <RankContainer>
       <RankParag>
-        {currentUser?.name ?? 'User'}, your current entry count is:
+        {currentUser?.first_name ?? 'User'}, your current entry count is:
       </RankParag>
       <RankHeader>#{currentUser?.entries ?? 0}</RankHeader>
     </RankContainer>
