@@ -11,7 +11,7 @@ export default function Header(props) {
   // const history = useHistory();
   // console.log(location);
   // console.log(history);
-  console.log('currentUser header component: ', currentUser);
+
   // console.log(setCurrentUser);
   // console.log(props);
 

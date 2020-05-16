@@ -4,7 +4,6 @@ import { RankContainer, RankParag, RankHeader } from './rank.styles';
 
 export default function Rank() {
   const { currentUser } = useContext(CurrentUserContext);
-  // console.log(currentUser);
 
   return (
     <RankContainer>

@@ -9,11 +9,29 @@ export async function getAllUsers() {
 }
 
 export async function insertUser(data) {
-  try {
-    return await db('users').returning('*').insert(data);
-  } catch (error) {
-    console.error('Insert user error: ', error.detail);
-  }
+  const { first_name, last_name, email, password } = data;
+  let result;
+  return await db.transaction(async (trx) => {
+    try {
+      const insertIntoUsers = await trx('users')
+        .insert({ first_name, last_name, joined: new Date(), email })
+        .returning('*');
+
+      await trx('login')
+        .insert({
+          hash: password,
+          email: insertIntoUsers[0]?.email,
+          created_on: new Date(),
+        })
+        .returning('*');
+
+      return insertIntoUsers?.[0];
+    } catch (error) {
+      console.error('Insert user error: ', error.message);
+    }
+
+    return result;
+  });
 }
 
 export async function getUserById(id) {
@@ -24,9 +42,23 @@ export async function getUserById(id) {
   }
 }
 
-export async function getUserByEmail(email) {
+export async function getUserLogin(email) {
   try {
-    return await db.select('*').from('users').where({ email: email });
+    const user = await db.raw(
+      `SELECT users.id  AS id,
+       users.first_name AS first_name,
+       users.last_name  AS last_name,
+       users.email      AS email,
+       users.entries    AS entries,
+       users.joined     AS joined,
+       login.hash       AS hash
+      FROM   users
+      JOIN login
+      ON users.email = login.email
+      WHERE users.email = ?;`,
+      [email]
+    );
+    return user?.rows[0];
   } catch (error) {
     console.error(`Unable to retrieve user with email: ${email}`, error);
   }
@@ -37,7 +69,7 @@ export async function updateUserEntries(id) {
     return await db('users')
       .where('id', '=', id)
       .increment('entries', 1)
-      .returning('entries');
+      .returning('*');
   } catch (error) {
     console.error('updateUserEntries: Unable to update entry.', error.message);
     return new Error(error);

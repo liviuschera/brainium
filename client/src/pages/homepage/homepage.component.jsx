@@ -46,7 +46,6 @@ export default function HomePage() {
       );
       setCurrentUser(updatedUser);
     }
-    console.log(currentUser);
   }
 
   return (
