@@ -5,12 +5,17 @@
 /client/node_modules
 /client/.pnp
 /client/.pnp.js
+/brainium-api/node_modules
+/brainium-api/.pnp
+/brainium-api/.pnp.js
 
 # testing
 /client/coverage
+/brainium-api/coverage
 
 # production
 /client/build
+/brainium-api/build
 
 # misc
 /client/.DS_Store
@@ -18,6 +23,11 @@
 /client/.env.development.local
 /client/.env.test.local
 /client/.env.production.local
+/brainium-api/.DS_Store
+/brainium-api/.env.local
+/brainium-api/.env.development.local
+/brainium-api/.env.test.local
+/brainium-api/.env.production.local
 
 
 .env
