@@ -6,8 +6,6 @@ import CustomButton from '../custom-button/custom-button.component';
 import { postData } from '../../utils/connect-to-api';
 
 export default function SignUp(props) {
-  console.log(props);
-
   const [state, setState] = useState({
     firstName: '',
     lastName: '',

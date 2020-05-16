@@ -23,7 +23,13 @@ export default function Header(props) {
         </LogoContainer>
       </NavLink>
       {currentUser?.id ? (
-        <NavLink to="/" onClick={() => setCurrentUser(null)}>
+        <NavLink
+          to="/"
+          onClick={() => {
+            setCurrentUser(null);
+            window.location.reload(false);
+          }}
+        >
           Sign Out
         </NavLink>
       ) : (
