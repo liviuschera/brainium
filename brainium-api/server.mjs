@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import handleSignIn from './controllers/sign-in.controller.mjs';
 import handleSignUp from './controllers/sign-up.controller.mjs';
-import handleRank from './controllers/sign-up.controller.mjs';
+import handleRank from './controllers/rank.controller.mjs';
 import handleGetUser from './controllers/sign-up.controller.mjs';
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (_req, res) => {
-  res.send(database.users);
+   res.send(database.users);
 });
 
 app.post('/signin', (req, res) => handleSignIn(req, res));
