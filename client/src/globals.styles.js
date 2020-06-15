@@ -29,4 +29,19 @@ body {
 	  line-height: 2;
   box-sizing: border-box;
 }
+
+.message-box {
+  color: white;
+  font-size: 13px;
+  box-shadow: 0 0.5rem 2rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-bottom: 2rem;
+    &.error{
+      background-color: rgba(255,0,0, 0.3);
+    }
+    &.success{
+      background-color: rgba(0,199,0, 0.3);
+    }
+
+}
 `;

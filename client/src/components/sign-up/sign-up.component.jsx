@@ -12,16 +12,23 @@ export default function SignUp(props) {
       email: '',
       password: '',
       confirmPassword: '',
+      firstNameStatus: null,
+      lastNameStatus: null,
+      emailStatus: null,
+      passwordStatus: null,
+      confirmPasswordStatus: null,
    });
 
    async function handleSubmit(event) {
       event.preventDefault();
       try {
+         if (state.confirmPassword !== state.password) {
+         }
          const response = await postData('http://localhost:5000/signup', state);
          props.history.push('/');
-         console.log(response);
+         // console.log(response);
       } catch (error) {
-         console.error('Sign-up client error: ', error);
+         // console.error('Sign-up client error: ', error);
       }
    }
 
@@ -78,6 +85,7 @@ export default function SignUp(props) {
                onChange={handleInputChange}
                required
             />
+            {/* <div className="message-box error">Error</div> */}
             <CustomButton type="submit">Register</CustomButton>
          </form>
       </SignInContainer>
