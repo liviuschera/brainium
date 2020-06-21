@@ -24,7 +24,10 @@ export default function SignUp(props) {
       try {
          if (state.confirmPassword !== state.password) {
          }
-         const response = await postData('http://localhost:5000/signup', state);
+         await postData(
+            'https://afternoon-badlands-23673.herokuapp.com/signup',
+            state
+         );
          props.history.push('/');
          // console.log(response);
       } catch (error) {

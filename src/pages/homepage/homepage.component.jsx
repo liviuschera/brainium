@@ -4,8 +4,8 @@
 import React, { useState, useContext } from 'react';
 
 import {
-  fetchClarifaiData,
-  calculateFaceLocation,
+   fetchClarifaiData,
+   calculateFaceLocation,
 } from '../../clarifai/clarifai.api';
 import DisplayImage from '../../components/display-image/display-image.component';
 
@@ -22,43 +22,44 @@ import { postData } from '../../utils/connect-to-api';
 // ///////////////////////////
 
 export default function HomePage() {
-  const [inputURL, setInputURL] = useState('');
-  const [boundingBoxCoords, setBoundingBoxCoords] = useState([]);
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+   const [inputURL, setInputURL] = useState('');
+   const [boundingBoxCoords, setBoundingBoxCoords] = useState([]);
+   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
-  // console.log(props);
+   // console.log(props);
 
-  function onInputChange(event) {
-    setInputURL(event.target.value);
-  }
+   function onInputChange(event) {
+      setInputURL(event.target.value);
+   }
 
-  async function onButtonSubmit(event) {
-    event.preventDefault();
-    const data = await fetchClarifaiData(inputURL);
-    const faceLocation = calculateFaceLocation(data);
-    setBoundingBoxCoords(faceLocation);
+   async function onButtonSubmit(event) {
+      event.preventDefault();
+      const data = await fetchClarifaiData(inputURL);
+      console.log(data);
+      const faceLocation = calculateFaceLocation(data);
+      setBoundingBoxCoords(faceLocation);
 
-    if (currentUser?.id) {
-      const updatedUser = await postData(
-        'http://localhost:5000/image',
-        { ...currentUser },
-        'PUT'
-      );
-      setCurrentUser(updatedUser);
-    }
-  }
+      if (currentUser?.id) {
+         const updatedUser = await postData(
+            'https://afternoon-badlands-23673.herokuapp.com/image',
+            { ...currentUser },
+            'PUT'
+         );
+         setCurrentUser(updatedUser);
+      }
+   }
 
-  return (
-    <>
-      <ContentContainer>
-        <Rank />
-        <ImageLinkForm
-          inputValue={inputURL}
-          onInputChange={onInputChange}
-          onButtonSubmit={onButtonSubmit}
-        />
-        <DisplayImage imgUrl={inputURL} coordsArray={boundingBoxCoords} />
-      </ContentContainer>
-    </>
-  );
+   return (
+      <>
+         <ContentContainer>
+            <Rank />
+            <ImageLinkForm
+               inputValue={inputURL}
+               onInputChange={onInputChange}
+               onButtonSubmit={onButtonSubmit}
+            />
+            <DisplayImage imgUrl={inputURL} coordsArray={boundingBoxCoords} />
+         </ContentContainer>
+      </>
+   );
 }
