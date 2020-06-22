@@ -7,6 +7,7 @@ const app = new Clarifai.App({
 
 export async function fetchClarifaiData(link) {
    try {
+      // const data = await app.models.predict(Clarifai.FACE_DETECT_MODEL, link);
       const data = await app.models.predict(
          'c0c0ac362b03416da06ab3fa36fb58e3',
          link

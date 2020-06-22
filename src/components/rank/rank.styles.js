@@ -7,10 +7,10 @@ export const RankContainer = styled.div`
 `;
 
 export const RankParag = styled.p`
-   font-size: 2.1rem;
-   font-weight: 100;
+   font-size: 1.9rem;
+   font-weight: 300;
 `;
 export const RankHeader = styled.h1`
-   font-size: 3rem;
+   font-size: 2.3rem;
    font-weight: 500;
 `;
