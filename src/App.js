@@ -10,8 +10,7 @@ import CurrentUserContext from '../src/contexts/current-user.context';
 
 import { GlobalStyle } from './globals.styles';
 import { ParticlesWrapper } from './app.styles';
-import Particles from 'react-particles-js';
-import { config } from './particles.config';
+import ParticlesBg from 'particles-bg';
 
 import Header from './components/header/header.component';
 import Homepage from './pages/homepage/homepage.component';
@@ -30,7 +29,7 @@ export default function App() {
     <>
       <GlobalStyle />
       <ParticlesWrapper>
-        <Particles params={config} />
+        <ParticlesBg color="#1199cc" type="cobweb" num={222} bg={true} />
       </ParticlesWrapper>
       <CurrentUserContext.Provider value={value}>
         <Header />

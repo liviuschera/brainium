@@ -1,17 +1,60 @@
-import Clarifai from 'clarifai';
+// import Clarifai from 'clarifai';
 
-const app = new Clarifai.App({
-   apiKey: 'b760c2f72e104db48434030cece764ed',
-   //  apiKey: 'c30753f4d5a04929928cebbdf9b3c452',
-});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// In this section, we set the user authentication, user and app ID, model details, and the URL
+// of the image we want as an input. Change these strings to run your own example.
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+const MODEL_ID = 'face-detection';
+// const app = new Clarifai.App({
+//    apiKey: 'e82f0f99711a451ba5d9e2412de6002d',
+// });
+
+const getRequestOptionsFromClarifaiAPI = (imageURL) => {
+   // Your PAT (Personal Access Token) can be found in the portal under Authentification
+   const PAT = '1a173ce53ec94ad9b737f0e3053f185f';
+   // Specify the correct user_id/app_id pairings
+   // Since you're making inferences outside your app's scope
+   const USER_ID = '1tkk7mamd7g0';
+   const APP_ID = 'brainium';
+   // Change these to whatever model and image URL you want to use
+   const IMAGE_URL = imageURL;
+
+   const raw = JSON.stringify({
+      "user_app_id": {
+         "user_id": USER_ID,
+         "app_id": APP_ID
+      },
+      "inputs": [
+         {
+            "data": {
+               "image": {
+                  "url": IMAGE_URL
+               }
+            }
+         }
+      ]
+   });
+   const requestOptions = {
+      method: 'POST',
+      headers: {
+         'Accept': 'application/json',
+         'Authorization': 'Key ' + PAT
+      },
+      body: raw
+   };
+   return requestOptions;
+};
 
 export async function fetchClarifaiData(link) {
    try {
-      // const data = await app.models.predict(Clarifai.FACE_DETECT_MODEL, link);
-      const data = await app.models.predict(
-         'c0c0ac362b03416da06ab3fa36fb58e3',
-         link
-      );
+      // const data = await app.models.predict(
+      //    MODEL_ID,
+      //    link
+      // );
+      const data = fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/outputs", getRequestOptionsFromClarifaiAPI(link))
+         .then(response => response.json());
       return data;
    } catch (error) {
       console.log('Something went wrong: ', error);
