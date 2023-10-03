@@ -41,7 +41,7 @@ export default function HomePage() {
 
       if (currentUser?.id) {
          const updatedUser = await postData(
-            'https://afternoon-badlands-23673.herokuapp.com/image',
+            'https://brainium-api.onrender.com/image',
             { ...currentUser },
             'PUT'
          );

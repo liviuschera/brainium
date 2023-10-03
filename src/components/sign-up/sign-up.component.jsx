@@ -25,7 +25,7 @@ export default function SignUp(props) {
          if (state.confirmPassword !== state.password) {
          }
          await postData(
-            'https://afternoon-badlands-23673.herokuapp.com/signup',
+            'https://brainium-api.onrender.com/signup',
             state
          );
          props.history.push('/');
