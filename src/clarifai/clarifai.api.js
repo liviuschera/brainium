@@ -37,10 +37,6 @@ const getRequestOptionsFromClarifaiAPI = (imageURL) => {
 
 export async function fetchClarifaiData(link) {
    try {
-      // const data = await app.models.predict(
-      //    MODEL_ID,
-      //    link
-      // );
       const data = fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/outputs", getRequestOptionsFromClarifaiAPI(link))
          .then(response => response.json());
       return data;
