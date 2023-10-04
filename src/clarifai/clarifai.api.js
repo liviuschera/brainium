@@ -4,8 +4,8 @@
 const MODEL_ID = 'face-detection';
 
 const getRequestOptionsFromClarifaiAPI = (imageURL) => {
-   const PAT = process.env.CLARIFAI_PAT;
    const USER_ID = '1tkk7mamd7g0';
+   const PAT = process.env.REACT_APP_CLARIFAI_PAT;
    const APP_ID = 'brainium';
    const IMAGE_URL = imageURL;
 
