@@ -1,6 +1,3 @@
-// import Clarifai from 'clarifai';
-
-
 const MODEL_ID = 'face-detection';
 
 const getRequestOptionsFromClarifaiAPI = (imageURL) => {
